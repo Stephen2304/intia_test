@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class BranchControllerTest extends TestCase
@@ -17,6 +18,10 @@ class BranchControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        
+        // Créer les rôles
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'agent']);
         
         // Créer un utilisateur admin
         $this->admin = User::factory()->create();

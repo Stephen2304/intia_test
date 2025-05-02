@@ -12,7 +12,6 @@ class BranchFactory extends Factory
             'name' => fake()->company(),
             'location' => fake()->city(),
             'contact_info' => fake()->phoneNumber(),
-            'status' => fake()->randomElement(['active', 'inactive']),
         ];
     }
 } 

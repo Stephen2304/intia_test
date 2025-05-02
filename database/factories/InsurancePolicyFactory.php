@@ -19,12 +19,9 @@ class InsurancePolicyFactory extends Factory
             'policy_number' => fake()->unique()->numerify('POL-########'),
             'start_date' => $startDate,
             'end_date' => $endDate,
-            'premium' => fake()->randomFloat(2, 100, 10000),
             'coverage_amount' => fake()->randomFloat(2, 10000, 1000000),
-            'deductible' => fake()->randomFloat(2, 0, 1000),
+            'annual_premium' => fake()->randomFloat(2, 1000, 10000),
             'status' => fake()->randomElement(['active', 'expired', 'cancelled']),
-            'payment_frequency' => fake()->randomElement(['monthly', 'quarterly', 'annually']),
-            'notes' => fake()->paragraph(),
         ];
     }
 } 

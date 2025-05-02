@@ -6,6 +6,7 @@ use App\Models\Branch;
 use App\Models\Client;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class ClientControllerTest extends TestCase
@@ -19,6 +20,10 @@ class ClientControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        
+        // Créer les rôles
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'agent']);
         
         // Créer une branche
         $this->branch = Branch::factory()->create();
@@ -54,11 +59,13 @@ class ClientControllerTest extends TestCase
     public function admin_can_create_client()
     {
         $clientData = [
-            'name' => 'John Doe',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
             'email' => 'john@example.com',
             'phone' => '0123456789',
             'address' => '123 Rue Example',
-            'branch_id' => $this->branch->id
+            'branch_id' => $this->branch->id,
+            'code' => strtoupper(uniqid()),
         ];
 
         $response = $this->actingAs($this->admin)
@@ -72,11 +79,13 @@ class ClientControllerTest extends TestCase
     public function agent_can_create_client_for_their_branch()
     {
         $clientData = [
-            'name' => 'John Doe',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
             'email' => 'john@example.com',
             'phone' => '0123456789',
             'address' => '123 Rue Example',
-            'branch_id' => $this->branch->id
+            'branch_id' => $this->branch->id,
+            'code' => strtoupper(uniqid()),
         ];
 
         $response = $this->actingAs($this->agent)
@@ -91,11 +100,13 @@ class ClientControllerTest extends TestCase
     {
         $otherBranch = Branch::factory()->create();
         $clientData = [
-            'name' => 'John Doe',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
             'email' => 'john@example.com',
             'phone' => '0123456789',
             'address' => '123 Rue Example',
-            'branch_id' => $otherBranch->id
+            'branch_id' => $otherBranch->id,
+            'code' => strtoupper(uniqid()),
         ];
 
         $response = $this->actingAs($this->agent)
@@ -110,11 +121,13 @@ class ClientControllerTest extends TestCase
     {
         $client = Client::factory()->create(['branch_id' => $this->branch->id]);
         $updatedData = [
-            'name' => 'Jane Doe',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
             'email' => 'jane@example.com',
             'phone' => '0987654321',
             'address' => '456 Rue Example',
-            'branch_id' => $this->branch->id
+            'branch_id' => $this->branch->id,
+            'code' => strtoupper(uniqid()),
         ];
 
         $response = $this->actingAs($this->admin)
@@ -129,11 +142,13 @@ class ClientControllerTest extends TestCase
     {
         $client = Client::factory()->create(['branch_id' => $this->branch->id]);
         $updatedData = [
-            'name' => 'Jane Doe',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
             'email' => 'jane@example.com',
             'phone' => '0987654321',
             'address' => '456 Rue Example',
-            'branch_id' => $this->branch->id
+            'branch_id' => $this->branch->id,
+            'code' => strtoupper(uniqid()),
         ];
 
         $response = $this->actingAs($this->agent)
@@ -149,11 +164,13 @@ class ClientControllerTest extends TestCase
         $otherBranch = Branch::factory()->create();
         $client = Client::factory()->create(['branch_id' => $otherBranch->id]);
         $updatedData = [
-            'name' => 'Jane Doe',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
             'email' => 'jane@example.com',
             'phone' => '0987654321',
             'address' => '456 Rue Example',
-            'branch_id' => $otherBranch->id
+            'branch_id' => $otherBranch->id,
+            'code' => strtoupper(uniqid()),
         ];
 
         $response = $this->actingAs($this->agent)

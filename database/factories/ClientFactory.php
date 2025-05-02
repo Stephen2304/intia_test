@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Branch;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClientFactory extends Factory
@@ -11,15 +12,14 @@ class ClientFactory extends Factory
     {
         return [
             'branch_id' => Branch::factory(),
-            'name' => fake()->name(),
+            'first_name' => fake()->name(),
+            'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->phoneNumber(),
             'address' => fake()->address(),
-            'date_of_birth' => fake()->date(),
-            'gender' => fake()->randomElement(['male', 'female']),
-            'occupation' => fake()->jobTitle(),
-            'national_id' => fake()->unique()->numerify('##########'),
-            'status' => fake()->randomElement(['active', 'inactive']),
+            'birth_date' => fake()->date(),
+            'city' => fake()->city(),
+            'code' => Str::random(10),
         ];
     }
 } 

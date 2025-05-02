@@ -32,9 +32,4 @@ class InsurancePolicy extends Model
     {
         return $this->belongsTo(InsuranceType::class, 'insurance_type_id');
     }
-
-    public function documents()
-    {
-        return $this->hasMany(Document::class);
-    }
 } 

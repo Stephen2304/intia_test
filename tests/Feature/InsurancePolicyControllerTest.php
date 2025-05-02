@@ -8,6 +8,7 @@ use App\Models\InsurancePolicy;
 use App\Models\InsuranceType;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class InsurancePolicyControllerTest extends TestCase
@@ -23,6 +24,10 @@ class InsurancePolicyControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        
+        // Créer les rôles
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'agent']);
         
         // Créer une branche
         $this->branch = Branch::factory()->create();
@@ -69,7 +74,8 @@ class InsurancePolicyControllerTest extends TestCase
             'policy_number' => 'POL123456',
             'start_date' => now()->format('Y-m-d'),
             'end_date' => now()->addYear()->format('Y-m-d'),
-            'premium' => 1000.00,
+            'coverage_amount' => 1000000.00,
+            'annual_premium' => 1000.00,
             'status' => 'active'
         ];
 
@@ -89,7 +95,8 @@ class InsurancePolicyControllerTest extends TestCase
             'policy_number' => 'POL123456',
             'start_date' => now()->format('Y-m-d'),
             'end_date' => now()->addYear()->format('Y-m-d'),
-            'premium' => 1000.00,
+            'coverage_amount' => 1000000.00,
+            'annual_premium' => 1000.00,
             'status' => 'active'
         ];
 
@@ -112,7 +119,8 @@ class InsurancePolicyControllerTest extends TestCase
             'policy_number' => 'POL123456',
             'start_date' => now()->format('Y-m-d'),
             'end_date' => now()->addYear()->format('Y-m-d'),
-            'premium' => 1000.00,
+            'coverage_amount' => 1000000.00,
+            'annual_premium' => 1000.00,
             'status' => 'active'
         ];
 
@@ -137,7 +145,8 @@ class InsurancePolicyControllerTest extends TestCase
             'policy_number' => 'POL654321',
             'start_date' => now()->format('Y-m-d'),
             'end_date' => now()->addYear()->format('Y-m-d'),
-            'premium' => 1500.00,
+            'coverage_amount' => 1500000.00,
+            'annual_premium' => 1500.00,
             'status' => 'inactive'
         ];
 

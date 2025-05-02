@@ -2,10 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\InsuranceType;
-use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User;
+use App\Models\InsuranceType;
+use Spatie\Permission\Models\Role;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class InsuranceTypeControllerTest extends TestCase
 {
@@ -17,6 +18,10 @@ class InsuranceTypeControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        // Créer les rôles
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'agent']);
         
         // Créer un utilisateur admin
         $this->admin = User::factory()->create();
@@ -49,8 +54,7 @@ class InsuranceTypeControllerTest extends TestCase
         $typeData = [
             'name' => 'Assurance Auto',
             'description' => 'Assurance pour véhicules automobiles',
-            'coverage' => 'Responsabilité civile, dommages, vol',
-            'premium_rate' => 0.05
+            'coverage_details' => 'Responsabilité civile, dommages, vol'
         ];
 
         $response = $this->actingAs($this->admin)
@@ -66,8 +70,7 @@ class InsuranceTypeControllerTest extends TestCase
         $typeData = [
             'name' => 'Assurance Auto',
             'description' => 'Assurance pour véhicules automobiles',
-            'coverage' => 'Responsabilité civile, dommages, vol',
-            'premium_rate' => 0.05
+            'coverage_details' => 'Responsabilité civile, dommages, vol'
         ];
 
         $response = $this->actingAs($this->agent)
@@ -84,8 +87,7 @@ class InsuranceTypeControllerTest extends TestCase
         $updatedData = [
             'name' => 'Assurance Auto Premium',
             'description' => 'Assurance complète pour véhicules automobiles',
-            'coverage' => 'Responsabilité civile, dommages, vol, assistance',
-            'premium_rate' => 0.07
+            'coverage_details' => 'Responsabilité civile, dommages, vol, assistance'
         ];
 
         $response = $this->actingAs($this->admin)
@@ -102,8 +104,7 @@ class InsuranceTypeControllerTest extends TestCase
         $updatedData = [
             'name' => 'Assurance Auto Premium',
             'description' => 'Assurance complète pour véhicules automobiles',
-            'coverage' => 'Responsabilité civile, dommages, vol, assistance',
-            'premium_rate' => 0.07
+            'coverage_details' => 'Responsabilité civile, dommages, vol, assistance'
         ];
 
         $response = $this->actingAs($this->agent)

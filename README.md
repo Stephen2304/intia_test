@@ -1,4 +1,4 @@
-# INTIA Assurance - Système de Gestion d'Assurance
+# INTIA - Système de Gestion de client et d'Assurance
 
 ## Prérequis
 
@@ -65,9 +65,9 @@ npm install
 npm run dev
 ```
 
-## Configuration des rôles et permissions
+## Configuration des rôles
 
-L'application utilise Spatie Laravel Permissions. Les rôles et permissions sont créés automatiquement lors de l'exécution des seeders.
+L'application utilise Spatie Laravel Permissions. Les rôles sont créés automatiquement lors de l'exécution des seeders.
 
 Rôles disponibles :
 
