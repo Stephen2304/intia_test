@@ -17,8 +17,7 @@ class InsuranceTypeFactory extends Factory
                 'Assurance Voyage'
             ]),
             'description' => fake()->sentence(),
-            'coverage' => fake()->paragraph(),
-            'premium_rate' => fake()->randomFloat(2, 0.01, 0.1),
+            'coverage_details' => fake()->paragraph(),
             'status' => fake()->randomElement(['active', 'inactive']),
         ];
     }

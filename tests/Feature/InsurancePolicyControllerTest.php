@@ -147,7 +147,7 @@ class InsurancePolicyControllerTest extends TestCase
             'end_date' => now()->addYear()->format('Y-m-d'),
             'coverage_amount' => 1500000.00,
             'annual_premium' => 1500.00,
-            'status' => 'inactive'
+            'status' => 'active'
         ];
 
         $response = $this->actingAs($this->admin)
@@ -171,8 +171,9 @@ class InsurancePolicyControllerTest extends TestCase
             'policy_number' => 'POL654321',
             'start_date' => now()->format('Y-m-d'),
             'end_date' => now()->addYear()->format('Y-m-d'),
-            'premium' => 1500.00,
-            'status' => 'inactive'
+            'coverage_amount' => 1500000.00,
+            'annual_premium' => 1500.00,
+            'status' => 'active'
         ];
 
         $response = $this->actingAs($this->agent)
@@ -198,8 +199,9 @@ class InsurancePolicyControllerTest extends TestCase
             'policy_number' => 'POL654321',
             'start_date' => now()->format('Y-m-d'),
             'end_date' => now()->addYear()->format('Y-m-d'),
-            'premium' => 1500.00,
-            'status' => 'inactive'
+            'coverage_amount' => 1500000.00,
+            'annual_premium' => 1500.00,
+            'status' => 'active'
         ];
 
         $response = $this->actingAs($this->agent)

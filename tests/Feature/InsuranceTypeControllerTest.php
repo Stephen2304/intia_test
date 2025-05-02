@@ -54,7 +54,8 @@ class InsuranceTypeControllerTest extends TestCase
         $typeData = [
             'name' => 'Assurance Auto',
             'description' => 'Assurance pour véhicules automobiles',
-            'coverage_details' => 'Responsabilité civile, dommages, vol'
+            'coverage_details' => 'Responsabilité civile, dommages, vol',
+            'status' => 'active'
         ];
 
         $response = $this->actingAs($this->admin)
@@ -70,7 +71,8 @@ class InsuranceTypeControllerTest extends TestCase
         $typeData = [
             'name' => 'Assurance Auto',
             'description' => 'Assurance pour véhicules automobiles',
-            'coverage_details' => 'Responsabilité civile, dommages, vol'
+            'coverage_details' => 'Responsabilité civile, dommages, vol',
+            'status' => 'active'
         ];
 
         $response = $this->actingAs($this->agent)
@@ -87,7 +89,8 @@ class InsuranceTypeControllerTest extends TestCase
         $updatedData = [
             'name' => 'Assurance Auto Premium',
             'description' => 'Assurance complète pour véhicules automobiles',
-            'coverage_details' => 'Responsabilité civile, dommages, vol, assistance'
+            'coverage_details' => 'Responsabilité civile, dommages, vol, assistance',
+            'status' => 'active'
         ];
 
         $response = $this->actingAs($this->admin)
@@ -104,7 +107,8 @@ class InsuranceTypeControllerTest extends TestCase
         $updatedData = [
             'name' => 'Assurance Auto Premium',
             'description' => 'Assurance complète pour véhicules automobiles',
-            'coverage_details' => 'Responsabilité civile, dommages, vol, assistance'
+            'coverage_details' => 'Responsabilité civile, dommages, vol, assistance',
+            'status' => 'active'
         ];
 
         $response = $this->actingAs($this->agent)
